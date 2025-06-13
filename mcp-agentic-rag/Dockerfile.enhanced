@@ -1,0 +1,18 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Solo instalar dependencias mínimas
+RUN pip install fastapi uvicorn pydantic
+
+# Copiar la base de conocimientos completa
+COPY knowledge_base/ knowledge_base/
+
+# Copiar el servidor mejorado
+COPY enhanced_simple_server.py .
+
+# Exponer puerto
+EXPOSE 8080
+
+# Comando para ejecutar
+CMD ["python", "enhanced_simple_server.py"] 

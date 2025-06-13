@@ -1,0 +1,21 @@
+{
+  "mcpServers": {
+    "agentic-rag": {
+      "command": "python",
+      "args": ["/path/to/your/project/rag_mcp_server.py"],
+      "env": {
+        "OPENAI_API_KEY": "your_openai_api_key",
+        "VECTOR_DB_TYPE": "chroma",
+        "CHROMA_HOST": "localhost",
+        "CHROMA_PORT": "8001"
+      }
+    },
+    "memory-server": {
+      "command": "python",
+      "args": ["/path/to/your/project/memory_mcp_server.py"],
+      "env": {
+        "REDIS_URL": "redis://localhost:6379"
+      }
+    }
+  }
+}

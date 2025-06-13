@@ -1,0 +1,27 @@
+# requirements_cloud.txt - Versión optimizada para Cloud Run
+# FastAPI y servidor web
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+
+# Base de datos vectorial SOLO in-memory (sin dependencias externas)
+chromadb>=0.4.0
+
+# OpenAI para LLM (mantener)
+openai>=1.3.0
+
+# Utilidades básicas
+requests>=2.31.0
+pydantic>=2.4.0
+python-dotenv>=1.0.0
+
+# Embeddings ligeros - reemplazar sentence-transformers
+numpy>=1.24.0
+scikit-learn>=1.3.0
+
+# MCP SDK (mantener arquitectura)
+mcp>=1.0.0
+
+# NO incluir:
+# sentence-transformers (muy pesado, descarga modelos)
+# redis (requiere infraestructura externa)
+# streamlit, pytest (solo para desarrollo) 

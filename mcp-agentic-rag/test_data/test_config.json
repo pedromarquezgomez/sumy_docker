@@ -1,0 +1,37 @@
+{
+    "test_configuration": {
+      "server_urls": {
+        "rag_server": "http://localhost:8000",
+        "memory_server": "http://localhost:8002", 
+        "tester_ui": "http://localhost:8003"
+      },
+      "timeouts": {
+        "connection_timeout": 30,
+        "request_timeout": 60,
+        "health_check_timeout": 10
+      },
+      "test_parameters": {
+        "max_search_results": 5,
+        "similarity_threshold": 0.3,
+        "max_query_length": 500,
+        "max_document_length": 10000
+      },
+      "expected_performance": {
+        "document_add_time_ms": 1000,
+        "search_time_ms": 3000,
+        "memory_store_time_ms": 500
+      }
+    },
+    "validation_rules": {
+      "required_fields": {
+        "documents": ["content", "metadata"],
+        "search_results": ["answer", "sources"],
+        "memory_entries": ["session_id", "timestamp"]
+      },
+      "field_constraints": {
+        "relevance_score": {"min": 0, "max": 1},
+        "max_results": {"min": 1, "max": 20},
+        "session_id_length": {"min": 5, "max": 50}
+      }
+    }
+  }

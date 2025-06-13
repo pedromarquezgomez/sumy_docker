@@ -1,0 +1,28 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Instalar dependencias del sistema
+RUN apt-get update && apt-get install -y \
+    gcc \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copiar requirements
+COPY requirements.txt .
+
+# Instalar dependencias Python específicas para el tester
+RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install streamlit
+
+# Copiar código fuente
+COPY mcp_tester.py .
+COPY test_data/ ./test_data/
+
+# Crear directorio de datos de prueba
+RUN mkdir -p /app/test_data
+
+# Exponer puerto para Streamlit
+EXPOSE 8000
+
+# Comando por defecto (Streamlit)
+CMD ["streamlit", "run", "mcp_tester.py", "--server.port=8000", "--server.address=0.0.0.0"]

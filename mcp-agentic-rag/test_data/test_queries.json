@@ -1,0 +1,164 @@
+{
+  "test_queries": [
+    {
+      "id": "query_001",
+      "query": "¿Qué es el Protocolo de Contexto de Modelo?",
+      "expected_topics": ["MCP", "protocol", "Anthropic", "contexto"],
+      "category": "definition",
+      "difficulty": "basic"
+    },
+    {
+      "id": "query_002", 
+      "query": "¿Cuáles son las ventajas de RAG agéntico sobre RAG tradicional?",
+      "expected_topics": ["RAG", "agentic", "advantages", "comparison"],
+      "category": "comparison",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "query_003",
+      "query": "¿Qué tipos de agentes existen en sistemas RAG agénticos?",
+      "expected_topics": ["agents", "routing", "planning", "ReAct", "execution"],
+      "category": "categorization", 
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "query_004",
+      "query": "¿Cómo funciona la arquitectura cliente-servidor de MCP?",
+      "expected_topics": ["architecture", "client", "server", "MCP", "communication"],
+      "category": "technical",
+      "difficulty": "advanced"
+    },
+    {
+      "id": "query_005",
+      "query": "Explica el proceso de búsqueda semántica en RAG",
+      "expected_topics": ["semantic", "search", "embeddings", "vector", "similarity"],
+      "category": "explanation",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "query_006",
+      "query": "¿Qué es ChromaDB y para qué se usa?",
+      "expected_topics": ["ChromaDB", "vector", "database", "embeddings"],
+      "category": "definition",
+      "difficulty": "basic"
+    },
+    {
+      "id": "query_007",
+      "query": "¿Cómo se implementa la memoria persistente en sistemas agénticos?",
+      "expected_topics": ["memory", "persistent", "Redis", "context", "sessions"],
+      "category": "implementation",
+      "difficulty": "advanced"
+    },
+    {
+      "id": "query_008",
+      "query": "¿Cuál es la diferencia entre tools y resources en MCP?",
+      "expected_topics": ["tools", "resources", "MCP", "actions", "data"],
+      "category": "comparison",
+      "difficulty": "intermediate"
+    }
+  ],
+  "test_documents": [
+    {
+      "doc_id": "test_doc_001",
+      "content": "Docker es una plataforma de contenedores que permite empaquetar aplicaciones y sus dependencias en contenedores ligeros y portátiles. Facilita el despliegue consistente de aplicaciones en diferentes entornos, desde desarrollo hasta producción.",
+      "metadata": {
+        "topic": "DevOps",
+        "technology": "Docker",
+        "category": "containerization",
+        "difficulty": "basic"
+      }
+    },
+    {
+      "doc_id": "test_doc_002", 
+      "content": "Python es un lenguaje de programación de alto nivel, interpretado y de propósito general, conocido por su sintaxis clara y legible. Es ampliamente utilizado en desarrollo web, ciencia de datos, inteligencia artificial y automatización.",
+      "metadata": {
+        "topic": "Programming",
+        "language": "Python",
+        "category": "programming_languages",
+        "difficulty": "basic"
+      }
+    },
+    {
+      "doc_id": "test_doc_003",
+      "content": "La inteligencia artificial (IA) es la simulación de procesos de inteligencia humana mediante máquinas, especialmente sistemas informáticos. Incluye el aprendizaje automático, procesamiento de lenguaje natural y visión por computadora.",
+      "metadata": {
+        "topic": "AI",
+        "field": "Computer Science", 
+        "category": "artificial_intelligence",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "doc_id": "test_doc_004",
+      "content": "FastAPI es un framework web moderno para Python que permite crear APIs de alto rendimiento de manera rápida y sencilla. Incluye validación automática de datos, documentación interactiva y soporte nativo para async/await.",
+      "metadata": {
+        "topic": "Web Development",
+        "framework": "FastAPI",
+        "language": "Python",
+        "category": "web_frameworks",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "doc_id": "test_doc_005",
+      "content": "Redis es una base de datos en memoria de código abierto que se utiliza como base de datos, caché y intermediario de mensajes. Admite estructuras de datos como strings, hashes, listas, sets y sorted sets con consultas de rango.",
+      "metadata": {
+        "topic": "Databases",
+        "technology": "Redis",
+        "category": "in_memory_database",
+        "difficulty": "intermediate"
+      }
+    }
+  ],
+  "test_scenarios": [
+    {
+      "scenario_id": "scenario_001",
+      "name": "Basic Document Addition and Search",
+      "description": "Agregar documentos básicos y realizar búsquedas simples",
+      "steps": [
+        "Add test documents",
+        "Perform basic searches", 
+        "Verify results relevance"
+      ],
+      "expected_results": {
+        "documents_added": 5,
+        "search_results_min": 1,
+        "relevance_threshold": 0.5
+      }
+    },
+    {
+      "scenario_id": "scenario_002", 
+      "name": "Agentic Query Expansion",
+      "description": "Probar expansión agéntica de consultas complejas",
+      "steps": [
+        "Submit complex query",
+        "Verify query expansion",
+        "Check multiple search results",
+        "Validate answer generation"
+      ],
+      "expected_results": {
+        "expanded_queries_min": 2,
+        "total_sources_min": 3,
+        "answer_generated": true
+      }
+    },
+    {
+      "scenario_id": "scenario_003",
+      "name": "Memory and Context Testing", 
+      "description": "Validar sistema de memoria y contexto persistente",
+      "steps": [
+        "Store conversation",
+        "Retrieve conversation history",
+        "Test user preferences",
+        "Verify context persistence"
+      ],
+      "expected_results": {
+        "conversation_stored": true,
+        "history_retrieved": true,
+        "preferences_saved": true
+      }
+    }
+  ]
+}
+
+

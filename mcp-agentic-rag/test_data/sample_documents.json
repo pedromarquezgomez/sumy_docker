@@ -1,0 +1,64 @@
+{
+    "documents": [
+      {
+        "id": "mcp_basics",
+        "title": "Fundamentos de MCP",
+        "content": "El Protocolo de Contexto de Modelo (MCP) es un estándar abierto desarrollado por Anthropic que permite una integración estandarizada entre los modelos de IA y las herramientas externas. MCP actúa como un conector universal, permitiendo que los grandes modelos de lenguaje (LLM) interactúen dinámicamente con APIs, bases de datos y aplicaciones empresariales. MCP sigue una arquitectura cliente-servidor donde los clientes MCP solicitan información y ejecutan tareas, mientras que los servidores MCP proporcionan acceso a herramientas y fuentes de datos externas.",
+        "metadata": {
+          "topic": "MCP",
+          "category": "foundations",
+          "author": "System",
+          "created_date": "2024-01-01",
+          "tags": ["protocol", "integration", "AI"]
+        }
+      },
+      {
+        "id": "rag_introduction",
+        "title": "Introducción a RAG",
+        "content": "La Generación Aumentada por Recuperación (RAG) combina un modelo de lenguaje con recuperación de conocimiento externo, de modo que las respuestas del modelo se basan en hechos actualizados en lugar de solo en sus datos de entrenamiento. En un pipeline RAG, una consulta del usuario se utiliza para buscar en una base de conocimiento mediante embeddings en una base de datos vectorial, y los documentos más relevantes se aumentan en el prompt del modelo para ayudar a generar una respuesta factual. Esto reduce las alucinaciones y permite que datos específicos del dominio o privados se utilicen en las respuestas.",
+        "metadata": {
+          "topic": "RAG", 
+          "category": "introduction",
+          "author": "System",
+          "created_date": "2024-01-02",
+          "tags": ["retrieval", "generation", "search"]
+        }
+      },
+      {
+        "id": "agentic_rag",
+        "title": "RAG Agéntico Avanzado",
+        "content": "Los sistemas RAG agénticos van más allá del RAG tradicional al introducir un agente de IA en el bucle RAG. En un sistema RAG agéntico, los componentes de recuperación y generación son orquestados por un agente inteligente que puede planificar consultas de múltiples pasos, usar varias herramientas y adaptar su estrategia basándose en la consulta y los resultados intermedios. Los agentes pueden realizar razonamiento multi-paso, reformular consultas si la primera recuperación no fue suficiente, y incorporar pasos de validación para asegurar que solo se use información confiable.",
+        "metadata": {
+          "topic": "Agentic RAG",
+          "category": "advanced",
+          "author": "System", 
+          "created_date": "2024-01-03",
+          "tags": ["agents", "planning", "multi-step"]
+        }
+      },
+      {
+        "id": "vector_databases",
+        "title": "Bases de Datos Vectoriales",
+        "content": "Las bases de datos vectoriales como ChromaDB, Pinecone y Weaviate son fundamentales para los sistemas RAG. Almacenan representaciones vectoriales (embeddings) de documentos de texto, permitiendo búsquedas de similaridad semántica eficientes. ChromaDB es una opción popular para desarrollo local, siendo fácil de configurar y usar. Pinecone ofrece una solución en la nube con alta escalabilidad. Los embeddings se generan usando modelos como sentence-transformers, que convierten texto en vectores numéricos que capturan el significado semántico.",
+        "metadata": {
+          "topic": "Vector Databases",
+          "category": "infrastructure",
+          "author": "System",
+          "created_date": "2024-01-04", 
+          "tags": ["embeddings", "similarity", "search"]
+        }
+      },
+      {
+        "id": "mcp_architecture",
+        "title": "Arquitectura de Servidores MCP",
+        "content": "La arquitectura de servidores MCP incluye varios componentes clave: Transport Layer (maneja comunicación via stdio, HTTP, WebSocket), Command Dispatcher (enruta solicitudes), Handler Components (Tools, Resources, Prompts), Model Registry (esquemas y validación), y Context Storage (persistencia de datos). Los Tools permiten ejecutar acciones, los Resources exponen datos, y los Prompts proporcionan plantillas reutilizables. El sistema soporta tanto almacenamiento en memoria como persistente usando Redis, MongoDB, o sistemas de archivos.",
+        "metadata": {
+          "topic": "MCP Architecture",
+          "category": "technical",
+          "author": "System",
+          "created_date": "2024-01-05",
+          "tags": ["architecture", "components", "design"]
+        }
+      }
+    ]
+  }

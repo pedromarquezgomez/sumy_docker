@@ -1,0 +1,36 @@
+# .gcloudignore - Excluir archivos innecesarios del despliegue cloud
+
+# Archivos de desarrollo
+*.pyc
+__pycache__/
+.pytest_cache/
+.venv/
+venv/
+env/
+
+# Archivos de configuración local
+.env
+.env.local
+.DS_Store
+
+# Archivos originales (usar solo versiones cloud)
+rag_mcp_server.py
+requirements.txt
+Dockerfile.backup
+
+# Modelos ML pesados (evitar descargas)
+model_cache/
+*.bin
+*.safetensors
+
+# Tests y documentación
+test_data/
+scripts/
+README.md
+instrucciones.md
+
+# Archivos de claude y MCP locales
+claude_*.py
+mcp_tester.py
+*.json
+!knowledge_base/*.json 

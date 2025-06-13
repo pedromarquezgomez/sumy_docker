@@ -1,0 +1,104 @@
+version: '3.8'
+
+services:
+  # Servidor RAG MCP Principal
+  rag-mcp-server:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.rag-server
+    ports:
+      - "8000:8000"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - PINECONE_API_KEY=${PINECONE_API_KEY}
+      - PINECONE_ENVIRONMENT=${PINECONE_ENVIRONMENT}
+      - VECTOR_DB_TYPE=chroma
+      - CHROMA_HOST=chromadb
+      - CHROMA_PORT=8000
+    volumes:
+      - ./data:/app/data
+      - ./knowledge_base:/app/knowledge_base
+    depends_on:
+      - chromadb
+    networks:
+      - rag-network
+
+  # Base de datos vectorial ChromaDB
+  chromadb:
+    image: chromadb/chroma:latest
+    ports:
+      - "8001:8000"
+    environment:
+      - IS_PERSISTENT=TRUE
+      - PERSIST_DIRECTORY=/chroma/chroma
+      - ALLOW_RESET=true
+    volumes:
+      - chromadb_data:/chroma/chroma
+    networks:
+      - rag-network
+
+  # Servidor de memoria MCP
+  memory-mcp-server:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.memory-server
+    ports:
+      - "8002:8000"
+    environment:
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - redis
+    networks:
+      - rag-network
+
+  # Redis para memoria persistente
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - rag-network
+
+  # Tester interactivo
+  mcp-tester:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.tester
+    ports:
+      - "8003:8000"
+    environment:
+      - RAG_SERVER_URL=http://rag-mcp-server:8000
+      - MEMORY_SERVER_URL=http://memory-mcp-server:8000
+    depends_on:
+      - rag-mcp-server
+      - memory-mcp-server
+    volumes:
+      - ./test_data:/app/test_data
+    networks:
+      - rag-network
+
+  # Cliente MCP de demostración
+  demo-client:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.client
+    environment:
+      - RAG_SERVER_URL=http://rag-mcp-server:8000
+      - MEMORY_SERVER_URL=http://memory-mcp-server:8000
+    depends_on:
+      - rag-mcp-server
+      - memory-mcp-server
+    networks:
+      - rag-network
+    stdin_open: true
+    tty: true
+
+volumes:
+  chromadb_data:
+  redis_data:
+
+networks:
+  rag-network:
+    driver: bridge

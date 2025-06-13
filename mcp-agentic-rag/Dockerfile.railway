@@ -1,0 +1,32 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Instalar dependencias del sistema necesarias
+RUN apt-get update && apt-get install -y \
+    gcc \
+    g++ \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copiar y instalar dependencias optimizadas para Railway
+COPY requirements_cloud.txt requirements.txt
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
+
+# Copiar base de conocimientos
+COPY knowledge_base/ knowledge_base/
+
+# Copiar servidor cloud optimizado
+COPY rag_mcp_server_cloud.py main.py
+
+# Variables de entorno para Railway
+ENV ENVIRONMENT=railway
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PORT=8080
+
+# Exponer puerto que Railway espera
+EXPOSE 8080
+
+# Usar el puerto de Railway dinámicamente
+CMD ["sh", "-c", "python main.py --port ${PORT:-8080}"] 
