@@ -1,0 +1,10 @@
+[phases.setup]
+nixPkgs = ["python310", "gcc"]
+
+[phases.install]
+cmds = ["pip install -r requirements_cloud.txt"]
+
+[phases.build]
+
+[start]
+cmd = "python rag_mcp_server_cloud.py" 
